@@ -4,10 +4,14 @@ require 'inc/functions.php';
 $pageTitle = "Project | Time Tracker";
 $page = "projects";
 
+if(isset($_GET['id'])){
+  list($project_id,$title, $category) = get_project(filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT));
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
     $category = trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING));
-    
+
     if (empty($title) || empty($category)) {
         $error_message = 'Please fill in the required fields: Title, Category';
     } else {
@@ -48,6 +52,11 @@ include 'inc/header.php';
                         </select></td>
                     </tr>
                 </table>
+                <?php
+                if (!empty($project_id)){
+                  echo "<input type='hidden' name='id' value='$project_id' />";
+                }
+                ?>
                 <input class="button button--primary button--topic-php" type="submit" value="Submit" />
             </form>
         </div>
