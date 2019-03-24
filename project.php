@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $project_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
     $category = trim(filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING));
-    
+
     if (empty($title) || empty($category)) {
         $error_message = 'Please fill in the required fields: Title, Category';
     } else {
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: project_list.php');
             exit;
         } else {
-            $error_message = 'Could not add project';
+            $error_message = 'Project could not be added';
         }
     }
 }
