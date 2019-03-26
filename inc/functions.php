@@ -167,7 +167,7 @@ function delete_project($project_id){
         echo "Error!: " . $e->getMessage() . "<br />";
         return false;
     }
-    if($results->rowCound() >0){
+    if($results->rowCount() >0){
         return true;
     } else{
         return false;
